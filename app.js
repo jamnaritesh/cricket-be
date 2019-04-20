@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 
 var product = require('./routes/product'); // Imports routes for the products
 var user = require('./routes/user'); // Imports routes for the products
+var team = require('./routes/team'); // Imports routes for the team
+var match = require('./routes/match'); // Imports routes for the matchse
+var bet = require('./routes/bet'); // Imports routes for the bet
 var app = express();
 
 
@@ -23,6 +26,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/products', product);
 app.use('/users',user)
+app.use('/teams',team)
+app.use('/matches',match)
+app.use('/bets',bet)
 
 var port = 1234;
 
