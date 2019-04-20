@@ -34,3 +34,10 @@ exports.user_update = function (req, res) {
         res.send('User '+ req.params._id+' udpated.');
     });
 };
+
+exports.user_increment_coins = function (req, res) {
+    User.findByIdAndUpdate(req.params._id, {$inc: { "coins": req.body.coins }}, function (err, product) {
+        if (err) return next(err);
+        res.send('User '+ req.params._id+' udpated.');
+    });
+};
