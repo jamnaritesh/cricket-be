@@ -1,7 +1,7 @@
 var Bet = require('../models/bet');
 var User = require('../models/user');
 
-exports.bet_create = function (req, res) {
+exports.bet_create = function (req, res, next) {
     var bet = new Bet(req.body);
 
     bet.save()
@@ -29,14 +29,14 @@ exports.bet_create = function (req, res) {
 };
 
 
-exports.bet_getAllByUser = function (req, res) {
+exports.bet_getAllByUser = function (req, res, next) {
     Bet.find({ "user_id" : req.params.id}).sort({date: 'desc'}).exec(function (err, bets) {
         if (err) return next(err);
         res.send(bets);
     });
 };
 
-exports.bet_getAllByMatch= function (req, res) {
+exports.bet_getAllByMatch= function (req, res, next) {
     Bet.find({ "match_id" : req.params.id}).sort({date: 'desc'}).exec(function (err, bets) {
         if (err) return next(err);
         res.send(bets);

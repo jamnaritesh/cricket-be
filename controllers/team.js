@@ -1,7 +1,7 @@
 var Team = require('../models/team');
 
 
-exports.team_create = function (req, res) {
+exports.team_create = function (req, res, next) {
     //console.log(req)
     var team = new Team(req.body);
 
@@ -18,14 +18,14 @@ exports.team_create = function (req, res) {
     )
 };
 
-exports.team_update = function (req, res) {
+exports.team_update = function (req, res, next) {
     Team.findByIdAndUpdate(req.params.id, {$inc: req.body}, function (err, team) {
         if (err) return next(err);
         res.send('Team udpated.');
     });
 };
 
-exports.team_get = function (req, res) {
+exports.team_get = function (req, res, next) {
     Team.findById(req.params.id, function (err, team) {
         if (err) return next(err);
         res.send(team);
