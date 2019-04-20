@@ -19,9 +19,16 @@ exports.team_create = function (req, res) {
 };
 
 exports.team_update = function (req, res) {
-    Match.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, product) {
+    Team.findByIdAndUpdate(req.params.id, {$inc: req.body}, function (err, team) {
         if (err) return next(err);
         res.send('Team udpated.');
+    });
+};
+
+exports.team_get = function (req, res) {
+    Team.findById(req.params.id, function (err, team) {
+        if (err) return next(err);
+        res.send(team);
     });
 };
 

@@ -39,3 +39,10 @@ exports.match_getAll = function (req, res) {
     });
 };
 
+exports.match_get = function (req, res) {
+    Match.findById(req.params.id).exec(function (err, match) {
+        if (err) return next(err);
+        res.send(match);
+    });
+};
+

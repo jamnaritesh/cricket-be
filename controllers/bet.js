@@ -42,3 +42,42 @@ exports.bet_getAllByMatch= function (req, res) {
         res.send(bets);
     });
 };
+
+exports.bet_calculateResult = function(req, res){
+    
+    Bet.find({ "match_id" : req.params.id}).sort({date: 'desc'}).exec(function (err, bets) {
+        if (err) return next(err);
+        let winningTeam = req.body.team
+        let winningTeamSum = 0, losingTeamSum = 0;
+        bets.forEach((bet)=>{
+            if( winningTeam == bet.team)
+            winningTeamSum+= bet.amount
+            else
+            losingTeamSum+= bet.amount
+        })
+
+        bets.forEach((bet)=>{
+            let incrementAmt = 0
+            if( winningTeam == bet.team){
+                incrementAmt = (bet.amount / winningTeamSum) * losingTeamSum + bet.amount
+                User.findByIdAndUpdate(bet.user_id, { $inc: { "coins": incrementAmt }} ).exec()
+                Bet.findByIdAndUpdate(bet._id, {$set:{ "result": "true"}}).exec()
+            }
+            else
+            Bet.findByIdAndUpdate(bet._id, {$set:{ "result": "false"}}).exec()
+        })
+        res.send("Success");
+    });
+}
+
+exports.bet_drawResult = function(req, res){
+    
+    Bet.find({ "match_id" : req.params.id}).sort({date: 'desc'}).exec(function (err, bets) {
+        if (err) return next(err);
+        bets.forEach((bet)=>{
+            User.findByIdAndUpdate(bet.user_id, { $inc: { "coins": bet.amount }} ).exec()
+            Bet.findByIdAndUpdate(bet._id, {$set:{ "result": "draw"}}).exec()
+        })
+        res.send("Success");
+    });
+}
