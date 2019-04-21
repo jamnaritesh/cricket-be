@@ -1,0 +1,337 @@
+{
+	"info": {
+		"_postman_id": "7466a435-79f6-4460-b2d8-75a903dcbd2a",
+		"name": "BettingApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Team",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"teamName\": \"CSK\", \n    \"players\": [\"Ritesh\",\"Rahul\",\"ABCD\",\"BCAAA\",\"asdasdsd\"],\n    \"played\": 0,\n    \"won\": 0,\n    \"lost\": 0,\n    \"draw\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1234/teams/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"teams",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Match",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"team1Name\": \"RCB\",\r\n    \"team2Name\": \"CSK\",\r\n    \"team1\": \"5cbb1d0714b19c2a0448d23c\",\r\n    \"team2\": \"5cbb1d3e14b19c2a0448d23d\",\r\n    \"team1Bets\":0,\r\n    \"team2Bets\": 0,\r\n    \"date\": \"Sat Apr 22 2019 18:56:38 GMT+0530 (India Standard Time)\",\r\n    \"won\": \"ND\",\r\n    \"live\": true\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1234/matches/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"matches",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll Matches",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1234/matches/getMatches",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"matches",
+						"getMatches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Match bet count",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"team2Bets\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1234/matches/5cbb1eb864a7912ba8ce0924/updateBetCount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"matches",
+						"5cbb1eb864a7912ba8ce0924",
+						"updateBetCount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Match Winner or live status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"won\": \"RCB\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1234/matches/5cbb1eb864a7912ba8ce0924/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"matches",
+						"5cbb1eb864a7912ba8ce0924",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Bet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 150,\n    \"user_id\": \"asdasdasd\",\n    \"match_id\":\"5cbb1eb864a7912ba8ce0924\",\n    \"team\": \"5cbb1d0714b19c2a0448d23c\",\n    \"result\": \"ND\",\n    \"date\": \"Sat Apr 20 2019 19:58:01 GMT+0530 (India Standard Time)\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1234/bets/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"bets",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"ritesh\",\n\t\"password\":\"121221212\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1234/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Coins After match result",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"team\": \"5cbb1d3e14b19c2a0448d23d\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1234/bets/5cbb1eb864a7912ba8ce0924/calculateResult",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"bets",
+						"5cbb1eb864a7912ba8ce0924",
+						"calculateResult"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Draw Result",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1234/bets/5cbb1eb864a7912ba8ce0924/drawResult",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"bets",
+						"5cbb1eb864a7912ba8ce0924",
+						"drawResult"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all bets by match",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1234/bets/5cbb1eb864a7912ba8ce0924/matchBets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"bets",
+						"5cbb1eb864a7912ba8ce0924",
+						"matchBets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all bets by user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1234/bets/jamna/userBets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"bets",
+						"jamna",
+						"userBets"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
